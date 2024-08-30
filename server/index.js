@@ -1,6 +1,7 @@
 import express, { json } from 'express';
 import dotenv from 'dotenv';
 import { connectDB } from './database/db.js';
+import corcs from 'cors';
 
 dotenv.config();
 
@@ -8,6 +9,7 @@ const app = express();
 
 //using middleware
 app.use(express,json())
+app.use(corcs())
 
 const port = process.env.PORT;
 

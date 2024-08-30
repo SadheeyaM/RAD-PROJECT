@@ -1,7 +1,7 @@
 import TryCatch from "../middlewares/trycatch.js";
 import { Courses } from "../models/Courses.js";
 
-export const createCourse = TryCatch(async(req, res)=>{
+export const createCourse = TryCatch(async(req, res) => {
     const {title, description, category, createdBy, duration, price} = req.body
 
     const image = req.file
