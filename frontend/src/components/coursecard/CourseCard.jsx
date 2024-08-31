@@ -1,6 +1,6 @@
 import React from 'react'
 import './courseCard.css'
-import { server } from '../../../main'
+import { server } from '../../main'
 
 const CourseCard = ({course}) => {
   return (
