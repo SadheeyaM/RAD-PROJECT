@@ -13,13 +13,13 @@ const schema = new mongoose.Schema({
     
     video: {
         type: String,
-        required: true
+        required: false
     },
 
     course: {
-        type: mongoose.Schema.Types.ObjectsId ,
+        type: mongoose.Schema.Types.ObjectId ,
         ref: "Courses",
-        required: true
+        required: true ,
     },
 
     createdAt: {
