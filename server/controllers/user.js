@@ -1,8 +1,8 @@
-import { User } from '../models/user.js';
 import bcrypt from 'bcrypt';
-import jwt from "jsonwebtoken" ;
+import jwt from "jsonwebtoken";
 import sendMail from '../middleware/sendEmail.js';
 import TryCatch from '../middleware/trycatch.js';
+import { User } from '../models/user.js';
 
 export const register = TryCatch(async(req,res)=> {
     const {email,name,password} = req.body
@@ -71,4 +71,39 @@ export const verifyUser = TryCatch(async(req,res)=>{
     res.json({
         message: "User Has Been Registered" ,
     })
+})
+
+export const loginUser = TryCatch(async(req, res) => {
+    console.log('Login request received:', req.body);
+    const {email,password} = req.body
+
+    const user = await User.findOne({email})
+
+    if(!user)
+        return res.status(400).json({
+            message: "No user in this email",
+        })
+    
+    const matchPassword = await bcrypt.compare(password, user.password)
+
+    if(!matchPassword) 
+        return res.status(400).json({
+            message: "wrong password"
+        })
+
+    const token = jwt.sign({_id: user._id}, process.env.Jwt_Sec,{
+        expiresIn: "15d",
+    })
+
+    res.json({
+        message: `Welcome back ${user.name}`,
+        token,
+        user,
+    })
+})
+
+export const myProfile = TryCatch(async(req, res)=>{
+    const user = await User.findById(req.user._id)
+
+    res.json({user});
 })
