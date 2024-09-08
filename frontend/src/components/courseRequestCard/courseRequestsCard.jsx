@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import "./courseRequestsCard.css";
-import { server } from "../../main";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 import axios from "axios";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { CourseData } from "../../context/CourseContext";
 import { UserData } from "../../context/UserContext";
+import { server } from "../../main";
+import "./courseRequestsCard.css";
 
 const CourseRequestCard = ({ request }) => {
   const navigate = useNavigate();
@@ -17,9 +17,10 @@ const CourseRequestCard = ({ request }) => {
   const [updatedDescription, setUpdatedDescription] = useState(request.description);
 
   const approveHandler = async (id) => {
+    console.log("hihi")
     try {
       const { data } = await axios.post(
-       `${server}/api/admin/approveCourseRequest/${id}`,
+       `${server}/api/approveRequest/${id}`,
         {},
         {
           headers: {
@@ -99,12 +100,10 @@ const CourseRequestCard = ({ request }) => {
       ) : (
         <p className="card-description">{request.description}</p>
       )}
-      {/* <p className="card-requested-by">Requested by: {request.email}</p> */}
 
       {user && user.role === "admin" && (
         
         <div className="card-actions">
-          <p className="card-requested-by">Requested by: {request.email}</p>
           <button
             onClick={() => approveHandler(request._id)}
             className="common-btn approve-btn"

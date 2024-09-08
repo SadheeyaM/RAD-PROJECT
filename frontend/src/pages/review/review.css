@@ -31,7 +31,7 @@
 
 /* Input fields on focus */
 .feedback-container input[type="text"]:focus {
-    border-color: #007bff;
+    border-color: #8a4baf;
     outline: none;
 }
 
@@ -45,7 +45,7 @@
 .feedback-container button {
     width: 100%;
     padding: 12px 15px;
-    background-color: #007bff;
+    background-color: #8a4baf;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -57,16 +57,19 @@
 
 /* Button hover effect */
 .feedback-container button:hover {
-    background-color: #0056b3;
+    background-color: white;
+    color: #000000;
 }
 
 /* Style for delete button */
 .feedback-container .delete-button {
     background-color: #dc3545;
+    color: white;
 }
 
 .feedback-container .delete-button:hover {
     background-color: #c82333;
+    color: white;
 }
 
 /* Status message after submitting feedback */
@@ -74,7 +77,7 @@
     text-align: center;
     margin-top: 15px;
     font-size: 16px;
-    color: #28a745; /* For success */
+    color: #8a4baf; /* For success */
 }
 
 /* Style for error message */
@@ -85,11 +88,11 @@
 /* Go to Course button */
 .feedback-container .go-to-course-button {
     margin-top: 20px;
-    background-color: #28a745;
+    background-color: #8a4baf;
 }
 
 .feedback-container .go-to-course-button:hover {
-    background-color: #218838;
+    background-color: white;
 }
 
 /* Style for existing review section */

@@ -218,3 +218,22 @@ export const updateRole = TryCatch(async (req, res) => {
     });
   }
 });
+
+export const approveCourseRequest = TryCatch(async (req, res) => {
+  const { id } = req.params;
+
+  const courseRequest = await CourseRequest.findById(id);
+
+  if (!courseRequest) {
+    return res.status(404).json({ message: "Course request not found" });
+  }
+
+  courseRequest.status = "approved";
+  await courseRequest.save();
+
+  res.status(200).json({
+    message: "Course request approved successfully",
+    courseRequest,
+  });
+});
+

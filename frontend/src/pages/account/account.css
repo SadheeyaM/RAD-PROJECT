@@ -46,7 +46,7 @@
   margin-bottom: 10px;
   border: none;
   border-radius: 5px;
-  color: black;
+  color: white;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease; 
@@ -62,9 +62,11 @@
 }
 
 .account-btn.admin {
-  background-color: #ffa726;
+  background-color: #8a4baf;
+  color: white;
 }
 
 .account-btn.logout {
   background-color: red;
+  color: white;
 }

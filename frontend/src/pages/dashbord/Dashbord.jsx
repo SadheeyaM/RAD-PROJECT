@@ -10,12 +10,11 @@ import CourseRequestCard from "../../components/courseRequestCard/courseRequests
 
 const Dashboard = () => {
   const { mycourse } = CourseData();
-  const { fetchMyRequests, requests, fetchMyFeedbacks, feedbacks } = UserData();
+  const { fetchMyRequests, requests } = UserData();
   const [activeSection, setActiveSection] = useState("courses"); // State to track the active section
 
   useEffect(() => {
     fetchMyRequests();
-    fetchMyFeedbacks();
   }, []);
 
   return (
@@ -27,9 +26,6 @@ const Dashboard = () => {
           </li>
           <li onClick={() => setActiveSection("requests")} className={activeSection === "requests" ? "active" : ""}>
             Requests
-          </li>
-          <li onClick={() => setActiveSection("feedbacks")} className={activeSection === "feedbacks" ? "active" : ""}>
-            Feedbacks
           </li>
         </ul>
       </div>
@@ -58,25 +54,6 @@ const Dashboard = () => {
                 ))
               ) : (
                 <p>No course requests made yet</p>
-              )}
-            </div>
-          </>
-        )}
-
-        {activeSection === "feedbacks" && (
-          <>
-            <h2>My Feedbacks</h2>
-            <div className="dashboard-content">
-              {feedbacks && feedbacks.length > 0 ? (
-                feedbacks.map((feedback) => (
-                  <div key={feedback._id} className="feedback-card">
-                    <h4>Course: {feedback.courseTitle}</h4>
-                    <p>{feedback.comment}</p>
-                    <p>Rating: {feedback.rating}</p>
-                  </div>
-                ))
-              ) : (
-                <p>No feedbacks given yet</p>
               )}
             </div>
           </>
