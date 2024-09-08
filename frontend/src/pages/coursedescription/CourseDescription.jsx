@@ -22,68 +22,6 @@ const CourseDescription = ({ user }) => {
     fetchCourse(params.id);
   }, []);
 
-  const checkoutHandler = async () => {
-    const token = localStorage.getItem("token");
-    setLoading(true);
-
-    const {
-      data: { order },
-    } = await axios.post(
-      `${server}/api/course/checkout/${params.id}`,
-      {},
-      {
-        headers: {
-          token,
-        },
-      }
-    );
-
-    const options = {
-      key: "rzp_test_yOMeMyaj2wlvTt",
-      amount: order.id, 
-      currency: "INR",
-      name: "E learning", 
-      description: "Learn with us",
-      order_id: order.id, 
-
-      handler: async function (response) {
-        const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
-          response;
-
-        try {
-          const { data } = await axios.post(
-            `${server}/api/verification/${params.id}`,
-            {
-              razorpay_order_id,
-              razorpay_payment_id,
-              razorpay_signature,
-            },
-            {
-              headers: {
-                token,
-              },
-            }
-          );
-
-          await fetchUser();
-          await fetchCourses();
-          await fetchMyCourse();
-          toast.success(data.message);
-          setLoading(false);
-          navigate(`/payment-success/${razorpay_payment_id}`);
-        } catch (error) {
-          toast.error(error.response.data.message);
-          setLoading(false);
-        }
-      },
-      theme: {
-        color: "#8a4baf",
-      },
-    };
-    const razorpay = new window.Razorpay(options);
-
-    razorpay.open();
-  };
 
   return (
     <>
