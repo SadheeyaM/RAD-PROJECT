@@ -1,0 +1,74 @@
+.requests {
+  padding: 20px 0;
+  text-align: center;
+  min-height: 60vh;
+  border-radius: 8px;
+  
+}
+
+.requests h1 {
+  font-size: 32px;
+    color: #8a4baf;
+    margin-bottom: 30px;
+}
+
+.request-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.no-requests {
+  text-align: center;
+  font-size: 18px;
+  color: #777;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-top: 20px;
+}
+
+.course-request-card { 
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-request-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.common-btn {
+  background-color: #8a4baf;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.common-btn:hover {
+  background-color: #6c3b88;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+.common-btn[style*="background: green"] {
+  background-color: #28a745;
+}
+
+.common-btn[style*="background: red"] {
+  background-color: #dc3545;
+}
+
+.common-btn[style*="background: green"]:hover,
+.common-btn[style*="background: red"]:hover {
+  transform: scale(1.1);
+}
