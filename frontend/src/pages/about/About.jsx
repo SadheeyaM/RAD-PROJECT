@@ -7,36 +7,29 @@ const About = () => {
       <div className="about-content">
         <h2>About Us</h2>
         <p>
-        We offer top-quality online courses designed to help you learn
-         and grow in your chosen field, with practical lessons taught
-          by experienced instructors
+          At <strong>Learn Anywhere</strong>, we believe that education should be
+          accessible to everyone, regardless of location or schedule. Our
+          mission is to empower learners across the globe with high-quality
+          online courses that provide real-world skills, taught by industry
+          experts. Whether you're a beginner or looking to advance your career,
+          we offer a range of courses tailored to your needs.
         </p>
+        <p>
+          Our platform combines cutting-edge technology with a personalized
+          learning experience, so you can grow at your own pace. With courses
+          available 24/7, you can study from the comfort of your home, office,
+          or anywhere you choose. Our instructors are passionate professionals
+          who bring their wealth of experience and knowledge to guide you
+          through engaging and practical lessons.
+        </p>
+        <p>
+          We are committed to supporting lifelong learners and fostering
+          a community where education and personal growth are a priority. Join
+          thousands of satisfied students and take the next step in your journey
+          with <strong>Learn Anywhere</strong>.
+        </p>
+        <p><em>Learn Anywhere, Grow Everywhere.</em></p>
       </div>
-
-
-      <div className="lectures-section">
-        <h3>Our Lectures</h3>
-        <div className="lectures-cards">
-          <div className="lecture-card">
-            <img src="../../public/lecture1.jpg" alt="Lecture 1" />
-            <div className="lecture-description">
-              <h4>Subithan</h4>
-              <p>Msc. Computer Science</p>
-              <p>Lecturer at UCSC</p>
-            </div>
-          </div>
-          <div className="lecture-card">
-            <img src="../../public/lecture2.jpg" alt="Lecture 2" />
-            <div className="lecture-description">
-              <h4>Sadheeya</h4>
-              <p>Msc. Computer Science</p>
-              <p>Lecturer at UCSC</p>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-
     </div>
   );
 };

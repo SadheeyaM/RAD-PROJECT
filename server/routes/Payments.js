@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 import { Payment } from '../models/Payment.js';
-import TryCatch from "../middlewares/TryCatch.js"; // Assuming you have this middleware
+import TryCatch from "../middlewares/TryCatch.js"; 
 import {User} from "../models/User.js"
 import {Courses} from "../models/Courses.js"
 import {Progress} from "../models/Progress.js"

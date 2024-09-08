@@ -1,11 +1,10 @@
 import express from 'express';
 const router = express.Router();
 import { Feedback } from '../models/Review.js';
-import TryCatch from "../middlewares/TryCatch.js"; // Assuming you have this middleware
+import TryCatch from "../middlewares/TryCatch.js"; 
 import { User } from "../models/User.js";
 import { Courses } from "../models/Courses.js";
 
-// Get all reviews
 export const getAllReviews = TryCatch(async (req, res) => {
   const reviews = await Feedback.find();
   res.json({
@@ -15,10 +14,9 @@ export const getAllReviews = TryCatch(async (req, res) => {
 
 export const getReview = async (req, res) => {
     try {
-        const { id: courseId } = req.params; // Extract courseId from URL parameters
-        const userId = req.user._id; // Get userId from authenticated user
+        const { id: courseId } = req.params; 
+        const userId = req.user._id; 
 
-        // Find the review based on userId and courseId
         const review = await Feedback.findOne({ userId, courseId });
 
         if (!review) {
@@ -32,9 +30,8 @@ export const getReview = async (req, res) => {
     }
 };
 
-// Delete a review by ID
 export const deleteReview = TryCatch(async (req, res) => {
-  const review = await Feedback.findById(req.params.id); // Corrected to Feedback
+  const review = await Feedback.findById(req.params.id);
   
   if (!review) {
     return res.status(404).json({ message: "Review not found" });
@@ -44,23 +41,21 @@ export const deleteReview = TryCatch(async (req, res) => {
   res.json({ message: "Review Deleted" });
 });
 
-// Update review by ID
 export const updateReview = TryCatch(async (req, res) => {
-    const { feedback } = req.body; // Update this line to expect 'feedback' instead of 'msg'
+    const { feedback } = req.body; 
     const review = await Feedback.findById(req.params.id);
   
     if (!review) {
       return res.status(404).json({ message: "Review not found" });
     }
   
-    review.feedback = feedback; // Update this line to update the 'feedback' field
+    review.feedback = feedback; 
   
-    await review.save(); // Save the updated review
+    await review.save(); 
   
     res.status(200).json({ message: "Review updated successfully", review });
   });
 
-// Create feedback for a course
 export const createReview = TryCatch(async (req, res) => {
     const { msg } = req.body;
     
@@ -74,7 +69,7 @@ export const createReview = TryCatch(async (req, res) => {
     const newFeedback = await Feedback.create({
       userId: req.user._id,
       courseId: course._id,
-      feedback: msg, // Corrected typo
+      feedback: msg,
     });
   
     res.status(201).json({

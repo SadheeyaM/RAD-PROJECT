@@ -20,8 +20,8 @@ const Lecture = ({ user }) => {
   const [video, setvideo] = useState("");
   const [videoPrev, setVideoPrev] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
-  const [editMode, setEditMode] = useState(false); // Track edit mode
-  const [lectureIdToEdit, setLectureIdToEdit] = useState(null); // Track lecture being edited
+  const [editMode, setEditMode] = useState(false); 
+  const [lectureIdToEdit, setLectureIdToEdit] = useState(null);
 
   if (user && user.role !== "admin" && !user.subscription.includes(params.id))
     return navigate("/");
@@ -255,7 +255,7 @@ const Lecture = ({ user }) => {
                       type="file"
                       placeholder="Choose video"
                       onChange={changeVideoHandler}
-                      required={!editMode} // Don't require video file if editing
+                      required={!editMode} 
                     />
 
                     {videoPrev && (
