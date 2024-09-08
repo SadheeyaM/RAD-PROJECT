@@ -1,4 +1,4 @@
-/* Container for the update course form */
+
 .update-course {
   max-width: 600px;
   margin: 40px auto;
@@ -10,7 +10,7 @@
   color: #333;
 }
 
-/* Heading for the form */
+
 .update-course h2 {
   font-size: 1.8rem;
     font-weight: 600;
@@ -19,7 +19,6 @@
     text-align: center;
 }
 
-/* Styling for the form */
 .update-course-form {
   display: flex;
   flex-direction: column;
