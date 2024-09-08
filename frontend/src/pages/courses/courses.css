@@ -24,6 +24,8 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f9f9f9;
+  color: #333;
+  font-weight:600;
 }
 
 .request-course-section p {
@@ -35,7 +37,7 @@
   padding: 10px 20px;
   font-size: 1em;
   color: #fff;
-  background-color: #007bff;
+  background-color: #8a4baf;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -43,5 +45,6 @@
 }
 
 .request-button:hover {
-  background-color: #0056b3;
+  background-color: #6c3b88;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }

@@ -39,6 +39,8 @@ const CourseCard = ({ course }) => {
       <p>Instructor- {course.createdBy}</p>
       <p>Duration- {course.duration} weeks</p>
       <p>Price- Rs.{course.price}</p>
+      <br/>
+
       {isAuth ? (
         <>
           {user && user.role !== "admin" ? (
@@ -48,7 +50,7 @@ const CourseCard = ({ course }) => {
                   onClick={() => navigate(`/course/study/${course._id}`)}
                   className="common-btn"
                 >
-                  Study
+                  Go To Course
                 </button>
               ) : (
                 <button
@@ -65,12 +67,12 @@ const CourseCard = ({ course }) => {
                 onClick={() => navigate(`/course/study/${course._id}`)}
                 className="common-btn"
               >
-                Study
+                Go To Course
               </button>
               <button
                 onClick={() => updateHandler(course._id)}
                 className="common-btn"
-                style={{ background: "blue" }}
+                
               >
                 Update
               </button>
@@ -83,7 +85,7 @@ const CourseCard = ({ course }) => {
         </button>
       )}
 
-      <br />
+   
 
       {user && user.role === "admin" && (
         <button

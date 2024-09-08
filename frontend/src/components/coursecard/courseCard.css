@@ -6,6 +6,7 @@
   text-align: center;
   width: 250px;
   transition: 0.5s;
+  /* justify-content: center; */
 
   &:hover {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
@@ -30,4 +31,30 @@
     color: #666;
     margin-bottom: 5px;
   }
+
+  .common-btn {
+    display: block;
+    width: calc(100% - 20px); 
+    padding: 10px 15px; 
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    text-align: center; 
+    background-color: #8a4baf;
+    margin-left: 10px;
+  }
+  
+  .common-btn:hover {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: black;
+  
+  }
 }
+
+

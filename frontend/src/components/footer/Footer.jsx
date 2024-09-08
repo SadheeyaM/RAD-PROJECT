@@ -11,8 +11,8 @@ const Footer = () => {
     <footer>
       <div className="footer-content">
         <p>
-          &copy; 2024 Your E-Learning Platform. All rights reserved. <br />
-          <a href="">RAD GROUP</a>
+          &copy; 2024 Your Learn Anywhere Platform. All rights reserved. <br /> Made
+          by <a href="">RAD Group Team</a>
         </p>
         <div className="social-links">
           <a href="">

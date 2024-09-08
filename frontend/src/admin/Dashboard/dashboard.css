@@ -1,20 +1,37 @@
 .main-content {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
+  justify-content: space-around; 
+  align-items:flex-start;
+  padding: 20px;
+  background-color: #fff; 
+  min-height: 55vh; 
+}
 
-  .box {
-    margin-left: 20px;
-    background-color: #8a4baf;
-    padding: 5px;
-    border-radius: 5px;
-    text-align: center;
-    margin-top: 5px;
-    color: white;
+.box {
+  background-color: #8a4baf;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  width: 200px;
+  margin: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+}
 
-    &:hover {
-      background-color: #432456;
-    }
-  }
+.box:hover {
+  background-color: #6e3d8c; 
+  transform: translateY(-5px); 
+}
+
+.box p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.box p:first-of-type {
+  font-size: 1rem;
+  color: #dcdcdc; 
 }

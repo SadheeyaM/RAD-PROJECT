@@ -13,7 +13,7 @@
 .payment-container h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #333;
+    color: #8a4baf;
     font-size: 24px;
 }
 
@@ -45,7 +45,7 @@
 .payment-container button {
     width: 100%;
     padding: 12px 15px;
-    background-color: #007bff;
+    background-color: #8a4baf;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -57,7 +57,7 @@
 
 /* Button hover effect */
 .payment-container button:hover {
-    background-color: #0056b3;
+    background-color: #6c338d;
 }
 
 /* Status message after payment */

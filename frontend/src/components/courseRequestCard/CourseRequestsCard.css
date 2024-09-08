@@ -1,18 +1,96 @@
 .course-request-card {
+  width: 100%;
+  max-width: 300px; 
+  min-height: 350px; 
   border: 1px solid #ddd;
   padding: 20px;
-  margin: 10px;
-  border-radius: 5px;
-  background-color: #f9f9f9;
+  margin: 15px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
-.course-request-card h3 {
-  margin-top: 0;
-  font-size: 1.5em;
+.course-request-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.course-request-card p {
+.card-header {
+  margin-bottom: 15px;
+}
+
+.card-status {
+  font-size: 0.9em;
+  color: #666;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 10px; 
+}
+
+.card-title {
+  font-size: 1.2em;
+  color: #333;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-description {
+  color: #555;
+  line-height: 1.5;
+  margin: 10px 0;
+  height: 60px; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-requested-by {
+  font-size: 0.85em;
+  color: #777;
   margin: 5px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-input,
+.card-textarea {
+  width: 80%;
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+  &&:focus{
+    outline:#622b82;
+    border-color: #8952a9;
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.2);
+  }
+
+}
+
+.card-textarea {
+  height: 60px; 
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-top: 10px;
 }
 
 .common-btn {
@@ -21,17 +99,62 @@
   border-radius: 5px;
   cursor: pointer;
   margin: 5px;
+  font-size: 14px;
   color: #fff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .common-btn:hover {
+  transform: scale(1.05);
   opacity: 0.9;
 }
 
-.common-btn[style*="green"] {
-  background-color: #4CAF50;
+.approve-btn {
+  background-color: #28a745;
 }
 
-.common-btn[style*="red"] {
-  background-color: #f44336;
+.update-btn {
+  background-color: #007bff;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+}
+
+.cancel-btn {
+  background-color: #6c757d;
+}
+
+.approve-btn:hover {
+  background-color: #218838;
+}
+
+.update-btn:hover {
+  background-color: #0056b3;
+}
+
+.edit-btn:hover {
+  background-color: #e0a800;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268;
+}
+
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 768px) {
+  .course-request-card {
+    max-width: 100%; /* Make full-width on smaller screens */
+    min-height: 280px; /* Adjust height for smaller screens */
+    margin: 10px auto;
+  }
 }

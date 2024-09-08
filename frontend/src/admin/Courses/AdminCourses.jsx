@@ -127,7 +127,7 @@ const AdminCourses = ({ user }) => {
                   required
                 />
 
-                <label htmlFor="text">createdBy</label>
+                <label htmlFor="text">Created-By</label>
                 <input
                   type="text"
                   value={createdBy}
@@ -157,7 +157,8 @@ const AdminCourses = ({ user }) => {
 
                 <input type="file" required onChange={changeImageHandler} />
                 {imagePrev && <img src={imagePrev} alt="" width={300} />}
-
+                
+                <br/>
                 <button
                   type="submit"
                   disabled={btnLoading}

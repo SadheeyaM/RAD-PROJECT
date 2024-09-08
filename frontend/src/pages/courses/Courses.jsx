@@ -1,18 +1,19 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "./courses.css";
 import { CourseData } from "../../context/CourseContext";
 import CourseCard from "../../components/coursecard/CourseCard";
+import { useNavigate } from "react-router-dom";
 
 const Courses = () => {
   const { courses } = CourseData();
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
+  console.log(courses);
 
   const handleRequestClick = () => {
     navigate("/requestCourse"); 
   };
 
-  console.log(courses);
   return (
     <div className="courses">
       <h2>Available Courses</h2>
@@ -24,7 +25,6 @@ const Courses = () => {
           <p>No Courses Yet!</p>
         )}
       </div>
-
       <div className="request-course-section">
         <p>Can't Find The Courses You Want? Get The Course You Want!</p>
         <button

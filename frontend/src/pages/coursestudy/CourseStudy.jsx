@@ -6,31 +6,49 @@ import { server } from "../../main";
 
 const CourseStudy = ({ user }) => {
   const params = useParams();
-
   const { fetchCourse, course } = CourseData();
   const navigate = useNavigate();
 
-  if (user && user.role !== "admin" && !user.subscription.includes(params.id))
-    return navigate("/");
+  if (user && user.role !== "admin" && !user.subscription.includes(params.id)) {
+    navigate("/");
+  }
 
   useEffect(() => {
     fetchCourse(params.id);
-  }, []);
-  return (
+  }, [params.id]);
+
+ 
+
+   return (
     <>
       {course && (
         <div className="course-study-page">
-          <img src={`${server}/${course.image}`} alt="" width={350} />
-          <h2>{course.title}</h2>
-          <h4>{course.description}</h4>
-          <h5>by - {course.createdBy}</h5>
-          <h5>Duration - {course.duration} weeks</h5>
-          <Link to={`/lectures/${course._id}`}>
-            <h2>Lectures</h2>
-          </Link>
-          <Link to={`/review/${course._id}`}>
-            <h2>Review</h2>
-          </Link>
+         
+          <div className="course-header">
+            <div className="course-image-container">
+              <img
+                src={`${server}/${course.image}`}
+                alt={course.title}
+                className="course-image"
+              />
+            </div>
+            <div className="course-details">
+              <h2>{course.title}</h2>
+              <h4>Instructor - {course.createdBy}</h4>
+              <h4>Duration - {course.duration} weeks</h4>
+              <Link to={`/lectures/${course._id}`} className="course-link">
+                <b>Lectures</b>
+              </Link>
+            </div>
+          </div>
+
+          
+          <div className="course-description">
+            <h3>Description</h3>
+            <p>
+            <h4>{course.description}</h4>
+            </p>
+          </div>
         </div>
       )}
     </>

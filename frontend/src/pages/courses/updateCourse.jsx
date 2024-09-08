@@ -1,155 +1,152 @@
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
 import { server } from "../../main";
-import "./UpdateCourse.css";
+import toast from "react-hot-toast";
+import Loading from "../../components/loading/Loading";
+import "./UpdateCourse.css"
 
 const UpdateCourse = () => {
+  const [course, setCourse] = useState(null);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [duration, setDuration] = useState("");
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState(null);
+  const [imagePrev, setImagePrev] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [btnLoading, setBtnLoading] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
-  const [course, setCourse] = useState({
-    title: "",
-    content: "",
-    duration: "",
-    price: "",
-  });
-  const [image, setImage] = useState(null); // Separate state for image
 
-  // Fetch existing course data
   useEffect(() => {
-    const fetchCourse = async () => {
-      try {
-        const response = await axios.get(`${server}/api/course/${id}`, {
-          headers: {
-            token: localStorage.getItem("token"),
-          },
-        });
-        setCourse(response.data.course);
-      } catch (error) {
-        console.error("Error fetching course:", error);
-      }
-    };
-
     fetchCourse();
-  }, [id]);
+  }, []);
 
-  // Handle changes to form fields (text inputs)
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCourse((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const fetchCourse = async () => {
+    try {
+      const { data } = await axios.get(`${server}/api/course/${id}`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      });
+      setCourse(data.course);
+      setTitle(data.course.title);
+      setDescription(data.course.description);
+      setDuration(data.course.duration)
+      setPrice(data.course.price)
+      setImagePrev(`${server}/${data.course.image}`);
+      setLoading(false);
+    } catch (error) {
+      toast.error("Failed to fetch course details");
+      setLoading(false);
+    }
   };
 
-  // Handle file selection for image input
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+  const changeImageHandler = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      setImagePrev(reader.result);
+      setImage(file); // Set image file state
+    };
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setBtnLoading(true);
 
-    // Logging to check if the submit function is triggered
-    console.log("Form submitted");
+    const myForm = new FormData();
+    myForm.append("title", title);
+    myForm.append("description", description);
+    myForm.append("duration", duration)
+    myForm.append("price", price)
 
-    const formData = new FormData();
-    formData.append("title", course.title);
-    formData.append("content", course.content);
-    formData.append("duration", course.duration);
-    formData.append("price", course.price);
-
+    // Append image only if a new image is selected
     if (image) {
-      formData.append("image", image); // Attach image only if selected
-      console.log("Image added to FormData:", image);
-    } else {
-      console.log("No image selected");
+      myForm.append("file", image);
     }
 
     try {
-      // Send the updated course data via API
-      const response = await axios.put(`${server}/api/course/${id}`, formData, {
+      const { data } = await axios.put(`${server}/api/course/${id}`, myForm, {
         headers: {
-          token: localStorage.getItem("token"),
           "Content-Type": "multipart/form-data", // Important for file upload
+          token: localStorage.getItem("token"),
         },
       });
-
-      console.log("API response:", response);
-      alert(response.data.message);
-
-      // Redirect to the course page after successful update
-      navigate(`/course/${id}`);
+      toast.success("Course updated successfully");
+      navigate("/courses"); // Redirect back to courses page
     } catch (error) {
-      console.error("Error updating course:", error);
-      alert("Error updating course. Please try again.");
+      toast.error(error.response.data.message || "Failed to update course");
+    } finally {
+      setBtnLoading(false);
     }
   };
 
+  if (loading) return <Loading />;
+
   return (
-    <div className="update-course-container">
-      <h1>Update Course</h1>
+    <div className="update-course">
+      <h2>Update Course</h2>
       <form onSubmit={handleSubmit} className="update-course-form">
         <div className="form-group">
-          <label htmlFor="title">Title:</label>
+          <label>Title</label>
           <input
-            id="title"
             type="text"
-            name="title"
-            value={course.title}
-            onChange={handleChange}
-            className="form-input"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
           />
         </div>
+
         <div className="form-group">
-          <label htmlFor="content">Content:</label>
-          <textarea
-            id="content"
-            name="content"
-            value={course.content}
-            onChange={handleChange}
-            className="form-textarea"
-          ></textarea>
+        <label>Description</label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
         </div>
+        
         <div className="form-group">
-          <label htmlFor="duration">Duration (weeks):</label>
-          <input
-            id="duration"
-            type="number"
-            name="duration"
-            value={course.duration}
-            onChange={handleChange}
-            className="form-input"
-          />
+        <label>Duration</label>
+        <input
+          value={duration}
+          onChange={(e) => setDuration(e.target.value)}
+          required
+        />
         </div>
+        
         <div className="form-group">
-          <label htmlFor="price">Price:</label>
-          <input
-            id="price"
-            type="number"
-            name="price"
-            value={course.price}
-            onChange={handleChange}
-            className="form-input"
-          />
+        <label>Duration</label>
+        <input
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          required
+        />
         </div>
+                
         <div className="form-group">
-          <label htmlFor="image">Image:</label>
-          <input
-            id="image"
-            type="file"
-            name="image"
-            onChange={handleImageChange}
-            className="form-input"
-          />
+        <label>Upload Image</label>
+        <input type="file" onChange={changeImageHandler} />
+
+        {imagePrev && (
+          <img src={imagePrev} alt="Course Preview" width={300} />
+        )}
         </div>
-        <button type="submit" className="submit-button">
-          Update Course
+        
+
+        <button type="submit" disabled={btnLoading} className="submit-btn">
+          {btnLoading ? "Updating..." : "Update Course"}
         </button>
+        
       </form>
     </div>
   );
 };
 
 export default UpdateCourse;
+

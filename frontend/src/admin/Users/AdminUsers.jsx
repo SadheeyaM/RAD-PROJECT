@@ -57,21 +57,21 @@ const AdminUsers = ({ user }) => {
     <Layout>
       <div className="users">
         <h1>All Users</h1>
-        <table border={"black"}>
+        <table>
           <thead>
             <tr>
-              <td>#</td>
-              <td>name</td>
-              <td>email</td>
-              <td>role</td>
-              <td>update role</td>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Update Role</th>
             </tr>
           </thead>
-
-          {users &&
-            users.map((e, i) => (
-              <tbody>
-                <tr>
+          
+          <tbody>
+            {users &&
+              users.map((e, i) => (
+                <tr key={e._id}>
                   <td>{i + 1}</td>
                   <td>{e.name}</td>
                   <td>{e.email}</td>
@@ -85,8 +85,10 @@ const AdminUsers = ({ user }) => {
                     </button>
                   </td>
                 </tr>
-              </tbody>
-            ))}
+              ))}
+          </tbody>
+          
+          
         </table>
       </div>
     </Layout>

@@ -26,7 +26,6 @@ import PaymentSuccess from "./pages/paymentsuccess/PaymentSuccess";
 import PaymentPage from "./pages/payment/payment";
 import AdminRequests from "./admin/Requests/AdminRequests";
 import RequestCourse from "./pages/requests/requestCourses";
-import Review from "./pages/review/review"
 
 const App = () => {
   const { isAuth, user, loading } = UserData();
@@ -102,10 +101,9 @@ const App = () => {
             />
             <Route
               path='/requestCourse'
-              element={isAuth ? <RequestCourse /> : <Login />}
+              element={isAuth ? <RequestCourse/> : <Login />}
             />
             <Route path="/payment/:courseId" element={<PaymentPage/>}/>
-            <Route path="/review/:courseId" element={<Review/>}/>
           </Routes>
           <Footer/>
         </BrowserRouter>

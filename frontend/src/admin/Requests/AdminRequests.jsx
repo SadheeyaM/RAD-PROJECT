@@ -41,7 +41,7 @@ const AdminRequests = ({ user }) => {
               <CourseRequestCard key={request._id} request={request} />
             ))
           ) : (
-            <p>No requests available</p>
+            <p className="no-requests">No requests available</p>
           )}
         </div>
       </div>

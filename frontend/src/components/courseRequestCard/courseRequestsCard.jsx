@@ -19,7 +19,7 @@ const CourseRequestCard = ({ request }) => {
   const approveHandler = async (id) => {
     try {
       const { data } = await axios.post(
-        `${server}/api/admin/approveCourseRequest/${id}`,
+       `${server}/api/admin/approveCourseRequest/${id}`,
         {},
         {
           headers: {
@@ -75,31 +75,36 @@ const CourseRequestCard = ({ request }) => {
   return (
     <div className="course-request-card">
       <div className="card-header">
+      <p className="card-status">Status: {request.status}</p>
         {isEditing ? (
           <>
             <input
               type="text"
               value={updatedTitle}
               onChange={(e) => setUpdatedTitle(e.target.value)}
+              className="card-input"
             />
           </>
         ) : (
           <h3 className="card-title">{request.title}</h3>
         )}
-        <p className="card-status">Status: {request.status}</p>
+        
       </div>
       {isEditing ? (
         <textarea
           value={updatedDescription}
           onChange={(e) => setUpdatedDescription(e.target.value)}
+          className="card-textarea"
         />
       ) : (
         <p className="card-description">{request.description}</p>
       )}
-      <p className="card-requested-by">Requested by: {request.requestedBy}</p>
+      {/* <p className="card-requested-by">Requested by: {request.email}</p> */}
 
       {user && user.role === "admin" && (
+        
         <div className="card-actions">
+          <p className="card-requested-by">Requested by: {request.email}</p>
           <button
             onClick={() => approveHandler(request._id)}
             className="common-btn approve-btn"

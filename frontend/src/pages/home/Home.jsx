@@ -9,8 +9,8 @@ const Home = () => {
     <div>
       <div className="home">
         <div className="home-content">
-          <h1>Welcome to our E-learning Platform</h1>
-          <p>Learn, Grow, Excel</p>
+          <h1>Welcome to our Learn Anywhere Platform</h1>
+          <p>Learn Anywhere, Grow Everywhere</p>
           <button onClick={() => navigate("/courses")} className="common-btn">
             Get Started
           </button>

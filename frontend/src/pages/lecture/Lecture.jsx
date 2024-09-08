@@ -266,7 +266,7 @@ const Lecture = ({ user }) => {
                         controls
                       ></video>
                     )}
-
+                    <br/>
                     <button
                       disabled={btnLoading}
                       type="submit"
@@ -287,6 +287,7 @@ const Lecture = ({ user }) => {
                       className={`lecture-number ${
                         lecture._id === e._id && "active"
                       }`}
+
                     >
                       {i + 1}. {e.title}{" "}
                       {progress[0] &&
