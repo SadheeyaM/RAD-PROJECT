@@ -28,6 +28,9 @@ const CourseStudy = ({ user }) => {
           <Link to={`/lectures/${course._id}`}>
             <h2>Lectures</h2>
           </Link>
+          <Link to={`/review/${course._id}`}>
+            <h2>Review</h2>
+          </Link>
         </div>
       )}
     </>

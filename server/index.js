@@ -26,8 +26,9 @@ import courseRoutes from "./routes/course.js";
 import adminRoutes from "./routes/admin.js";
 import paymentRoutes from "./routes/Payments.js"
 import {isAuth} from "./middlewares/isAuth.js"
+import Review from "./routes/review.js";
 
-
+app.use('/api/review', Review);
 app.use("/api", userRoutes);
 app.use("/api", courseRoutes);
 app.use("/api", adminRoutes);
