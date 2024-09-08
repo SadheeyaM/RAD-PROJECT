@@ -7,15 +7,14 @@ import toast from "react-hot-toast";
 import { UserData } from "../../context/UserContext";
 
 const FeedbackPage = () => {
-    const { courseId } = useParams(); // Retrieve courseId from params
+    const { courseId } = useParams();
     const navigate = useNavigate();
-    const { user } = UserData(); // Assuming you have user info in context
+    const { user } = UserData(); 
     const [feedback, setFeedback] = useState('');
     const [feedbackStatus, setFeedbackStatus] = useState('');
-    const [existingReview, setExistingReview] = useState(null); // Track if a review exists
-    const [isLoading, setIsLoading] = useState(true); // Track loading state
+    const [existingReview, setExistingReview] = useState(null); 
+    const [isLoading, setIsLoading] = useState(true); 
 
-    // Fetch existing feedback when the page loads
     useEffect(() => {
         const fetchFeedback = async () => {
             try {
@@ -27,12 +26,12 @@ const FeedbackPage = () => {
 
                 if (data.review) {
                     setExistingReview(data.review);
-                    setFeedback(data.review.feedback); // Pre-fill feedback for editing
+                    setFeedback(data.review.feedback); 
                 }
             } catch (error) {
                 console.error("Error fetching review:", error);
             } finally {
-                setIsLoading(false); // Stop loading after request
+                setIsLoading(false); 
             }
         };
 
@@ -51,7 +50,7 @@ const FeedbackPage = () => {
                 }
             );
             setFeedbackStatus(response.data.message);
-            setExistingReview(response.data.review); // Update with the new review
+            setExistingReview(response.data.review); 
         } catch (error) {
             setFeedbackStatus('Feedback failed. Please try again.');
         }
@@ -59,7 +58,7 @@ const FeedbackPage = () => {
 
     const updateHandler = async () => {
         try {
-          console.log('Updating review:', existingReview._id, feedback); // Add this line to log the update request
+          console.log('Updating review:', existingReview._id, feedback); 
           const { data } = await axios.put(
             `${server}/api/review/updateReview/${existingReview._id}`,
             { feedback: feedback },
@@ -69,11 +68,11 @@ const FeedbackPage = () => {
               }
             }
           );
-          console.log('Update response:', data); // Add this line to log the response
+          console.log('Update response:', data); 
           toast.success(data.message);
           setFeedbackStatus('Review updated successfully');
         } catch (error) {
-          console.error('Error updating review:', error); // Add this line to log the error
+          console.error('Error updating review:', error); 
           toast.error("Failed to update review");
         }
       };
@@ -90,8 +89,8 @@ const FeedbackPage = () => {
                     }
                 );
                 toast.success(data.message);
-                setExistingReview(null); // Clear existing review state
-                setFeedback(''); // Clear feedback input
+                setExistingReview(null);
+                setFeedback(''); 
                 setFeedbackStatus('Review deleted successfully');
             } catch (error) {
                 toast.error("Failed to delete review");
@@ -103,7 +102,6 @@ const FeedbackPage = () => {
         navigate(`/course/study/${courseId}`);
     };
 
-    // Render a loading indicator while fetching existing feedback
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -115,7 +113,7 @@ const FeedbackPage = () => {
             {existingReview && (
                 <div className="existing-review">
                     <h3>Your Review:</h3>
-                    <p>{existingReview.feedback}</p> {/* Display the existing review */}
+                    <p>{existingReview.feedback}</p> 
                 </div>
             )}
 
@@ -125,7 +123,7 @@ const FeedbackPage = () => {
                     <input
                         type="text"
                         className="form-control"
-                        value={feedback} // Use feedback state correctly
+                        value={feedback} 
                         onChange={(e) => setFeedback(e.target.value)}
                         placeholder="Your Feedback"
                         required

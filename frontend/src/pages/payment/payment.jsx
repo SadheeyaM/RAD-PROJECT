@@ -9,14 +9,14 @@ const PaymentPage = () => {
     const [cvv, setCvv] = useState('');
     const [paymentStatus, setPaymentStatus] = useState(null);
     const { courseId } = useParams();
-    const navigate = useNavigate(); // Hook to handle navigation
+    const navigate = useNavigate(); 
 
     const handlePayment = async () => {
         try {
             const response = await axios.post(
                 `http://localhost:3000/api/payment/pay/${courseId}`,
                 {
-                    currency: 'LKR', // example currency
+                    currency: 'LKR',
                     cardNumber,
                     expiryDate,
                     cvv,
@@ -28,8 +28,8 @@ const PaymentPage = () => {
                 }
             );
             
-            console.log('Payment Response:', response.data.message); // Log the message
-            setPaymentStatus(response.data.message); // Set the status
+            console.log('Payment Response:', response.data.message); 
+            setPaymentStatus(response.data.message);
         } catch (error) {
             console.error('Error:', error.response || error);
             setPaymentStatus('Payment failed. Please try again.');

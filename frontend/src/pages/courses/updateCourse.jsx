@@ -51,7 +51,7 @@ const UpdateCourse = () => {
 
     reader.onloadend = () => {
       setImagePrev(reader.result);
-      setImage(file); // Set image file state
+      setImage(file); 
     };
   };
 
@@ -65,7 +65,6 @@ const UpdateCourse = () => {
     myForm.append("duration", duration)
     myForm.append("price", price)
 
-    // Append image only if a new image is selected
     if (image) {
       myForm.append("file", image);
     }
@@ -73,12 +72,12 @@ const UpdateCourse = () => {
     try {
       const { data } = await axios.put(`${server}/api/course/${id}`, myForm, {
         headers: {
-          "Content-Type": "multipart/form-data", // Important for file upload
+          "Content-Type": "multipart/form-data", 
           token: localStorage.getItem("token"),
         },
       });
       toast.success("Course updated successfully");
-      navigate("/courses"); // Redirect back to courses page
+      navigate("/courses"); 
     } catch (error) {
       toast.error(error.response.data.message || "Failed to update course");
     } finally {
