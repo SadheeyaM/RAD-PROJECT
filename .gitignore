@@ -1,0 +1,12 @@
+server/node_modules/
+frontend/node_modules/
+
+# Ignore environment files
+server/.env
+
+# Ignore OS-generated files
+.DS_Store
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
