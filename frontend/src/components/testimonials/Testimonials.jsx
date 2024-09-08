@@ -1,65 +1,54 @@
-import React from 'react'
-import './testimonials.css'
+import React from "react";
+import "./testimonials.css";
 
 const Testimonials = () => {
-    const testimonialsData = [
-        {
-          id: 1,
-          name: "John Doe",
-          position: "Student",
-          message:
-            "This platform helped me learn so effectively. The courses are amazing and the instructors are top-notch.",
-          image:
-            "https://th.bing.com/th?q=Current+Bachelor&w=120&h=120&c=1&rs=1&qlt=90&cb=1&dpr=1.3&pid=InlineBlock&mkt=en-IN&cc=IN&setlang=en&adlt=moderate&t=1&mw=247",
-        },
-        {
-          id: 2,
-          name: "Jane Smith",
-          position: "Student",
-          message:
-            "I've learned more here than in any other place. The interactive lessons and quizzes make learning enjoyable.",
-          image:
-            "https://th.bing.com/th/id/OIP.GKAiW3oc2TWXVEeZAzrWOAHaJF?w=135&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
-        },
-        {
-          id: 3,
-          name: "John Doe",
-          position: "Student",
-          message:
-            "This platform helped me learn so effectively. The courses are amazing and the instructors are top-notch.",
-          image:
-            "https://th.bing.com/th?q=Current+Bachelor&w=120&h=120&c=1&rs=1&qlt=90&cb=1&dpr=1.3&pid=InlineBlock&mkt=en-IN&cc=IN&setlang=en&adlt=moderate&t=1&mw=247",
-        },
-        {
-          id: 4,
-          name: "Jane Smith",
-          position: "Student",
-          message:
-            "I've learned more here than in any other place. The interactive lessons and quizzes make learning enjoyable.",
-          image:
-            "https://th.bing.com/th/id/OIP.GKAiW3oc2TWXVEeZAzrWOAHaJF?w=135&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
-        },
-    ];   
-    return (
-        <section className="testimonials">
-            <h2>What our students say</h2>
-            <div className="testimonial-cards"> {
-                testimonialsData.map((e) => (
-                    <div className="testimonial-card" key={e.id}>
-                        <div className="student-image">
-                            <img src={e.image} alt="" />
-                        </div>
-                        <p className='message'>{e.message}</p>
-                        <div className="info">
-                            <p className="name">{e.name}</p>
-                            <p className="position">{e.position}</p>
-                        </div>
-                    </div>
-                ))
-                }
+  const testimonialsData = [
+    {
+      id: 1,
+      name: "Saman Perera",
+      position: "Student",
+      message:
+        "I really enjoyed the online course. I thought it was well planned and layed out, easy for me to follow.",
+    },
+    {
+      id: 2,
+      name: "Amal Peiris",
+      position: "Student",
+      message:
+        "To be honest , this was my first online class. I am looking forward to taking more online classes. The experience of this class has being nothing but positive.",
+    },
+    {
+      id: 3,
+      name: "Dasun Samantha",
+      position: "Student",
+      message:
+        "Overall I enjoyed the course. I liked that everything was straight forward.",
+    },
+    {
+      id: 4,
+      name: "Amith Almeida",
+      position: "Student",
+      message:
+        "I liked being able to access info anytime of the day.",
+      
+    },
+  ];
+  return (
+    <section className="testimonials">
+      <h2>What our students say</h2>
+      <div className="testmonials-cards">
+        {testimonialsData.map((e) => (
+          <div className="testimonial-card" key={e.id}>
+            <p className="message">{e.message}</p>
+            <div className="info">
+              <p className="name">{e.name}</p>
+              <p className="position">{e.position}</p>
             </div>
-        </section>
-    )
-}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
 
-export default Testimonials
+export default Testimonials;

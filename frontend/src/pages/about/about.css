@@ -1,22 +1,77 @@
-.about{
-    padding: 80px 0;
-    text-align: center;
-    min-height: 55vh;
+.about {
+  padding: 80px 0;
+  text-align: center;
+  min-height: 55vh;
 
-    .about-content{
-        max-width: 800px;
-        margin: 0 auto;
+  .about-content {
+    max-width: 800px;
+    margin: 0 auto;
 
-        h2{
-            font-size: 32px;
-            color: #8a4baf;
-            margin-bottom: 20px;
-        }
-
-        p{
-            font-size: 32px;
-            color: #333;
-            line-height: 1.6;
-        }
+    h2 {
+      font-size: 32px;
+      color: #8a4baf;
+      margin-bottom: 20px;
     }
+
+    p {
+      font-size: 16px;
+      color: #333;
+      line-height: 1.6;
+      font-weight: 700;
+    }
+  }
+}
+
+.lectures-section {
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.lectures-section h3 {
+  font-size: 28px;
+  color: #8a4baf;
+  margin-bottom: 20px;
+}
+
+.lectures-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  
+
+}
+
+.lecture-card {
+  width: 250px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
+  text-align: left;
+}
+
+.lecture-card img {
+  width: 100%;
+  height: 50%;
+ 
+}
+
+.lecture-description {
+  padding: 15px;
+}
+
+.lecture-description h4 {
+  font-size: 20px;
+  color: #8a4baf;
+  margin-bottom: 10px;
+}
+
+.lecture-description p {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+  font-weight: 700;
 }

@@ -1,0 +1,112 @@
+/* Container for the entire review form */
+.feedback-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Title for the review page */
+.feedback-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+}
+
+/* Style each input field */
+.feedback-container input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+/* Input fields on focus */
+.feedback-container input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Style for the form labels */
+.feedback-container label {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Buttons for the review form */
+.feedback-container button {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+/* Button hover effect */
+.feedback-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Style for delete button */
+.feedback-container .delete-button {
+    background-color: #dc3545;
+}
+
+.feedback-container .delete-button:hover {
+    background-color: #c82333;
+}
+
+/* Status message after submitting feedback */
+.feedback-container p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+    color: #28a745; /* For success */
+}
+
+/* Style for error message */
+.feedback-container .error {
+    color: #dc3545;
+}
+
+/* Go to Course button */
+.feedback-container .go-to-course-button {
+    margin-top: 20px;
+    background-color: #28a745;
+}
+
+.feedback-container .go-to-course-button:hover {
+    background-color: #218838;
+}
+
+/* Style for existing review section */
+.existing-review {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.existing-review h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.existing-review p {
+    margin: 0;
+    color: #555;
+}

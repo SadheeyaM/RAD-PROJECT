@@ -1,109 +1,259 @@
-import bcrypt from 'bcrypt';
+import { User } from "../models/User.js";
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import sendMail from '../middleware/sendEmail.js';
-import TryCatch from '../middleware/trycatch.js';
-import { User } from '../models/user.js';
+import sendMail, { sendForgotMail } from "../middlewares/sendMail.js";
+import TryCatch from "../middlewares/TryCatch.js";
+import { CourseRequest } from "../models/requests.js";
 
-export const register = TryCatch(async(req,res)=> {
-    const {email,name,password} = req.body
+export const register = TryCatch(async (req, res) => {
+  const { email, name, password } = req.body;
 
-    let user = await User.findOne({email}) ;
+  let user = await User.findOne({ email });
 
-    if (user)
-        return res.status(400).json({
-            message: "This User Is Registered Already"
+  if (user)
+    return res.status(400).json({
+      message: "User Already exists",
     });
 
-    const encryptedPassword = await bcrypt.hash(password,10) ;
+  const hashPassword = await bcrypt.hash(password, 10);
 
-    user = {
-        name ,
-        email,
-        password: encryptedPassword ,
-    } ;
+  user = {
+    name,
+    email,
+    password: hashPassword,
+  };
 
-    const otp = Math.floor(Math.random() * 1000000) ;
-    
-    const activationToken = jwt.sign({
-        user,
-        otp,
-    },
-    process.env.activationSecret,
+  const otp = Math.floor(Math.random() * 1000000);
+
+  const activationToken = jwt.sign(
     {
-        expiresIn: "5m" ,
-    }) ;
-    const data = {
-        name,
-        otp,
-    };
+      user,
+      otp,
+    },
+    process.env.Activation_Secret,
+    {
+      expiresIn: "5m",
+    }
+  );
 
-    await sendMail(
-        email,
-        "Learn Anywhere",
-        data
-    )
+  const data = {
+    name,
+    otp,
+  };
 
-    res.status(200).json({
-        message: "The OTP Has Been Sent To Your Email" ,
-        activationToken,
-    }) ;
-})
+  await sendMail(email, "E learning", data);
 
-export const verifyUser = TryCatch(async(req,res)=>{
-    const {otp , activationToken} = req.body ;
+  res.status(200).json({
+    message: "Otp send to your mail",
+    activationToken,
+  });
+});
 
-    const verify = jwt.verify(activationToken, process.env.activationSecret) ;
+export const verifyUser = TryCatch(async (req, res) => {
+  const { otp, activationToken } = req.body;
 
-    if (!verify) return res.status(400).json({
-        message: "Your OTP Has Expired" ,
-    }) ;
+  const verify = jwt.verify(activationToken, process.env.Activation_Secret);
 
-    if (verify.otp !== otp) return res.status(400).json({
-        message: "Your Entered An Invalid OTP" ,
-    }) ;
+  if (!verify)
+    return res.status(400).json({
+      message: "Otp Expired",
+    });
 
-    await User.create ({
-        name: verify.user.name ,
-        email: verify.user.email ,
-        password: verify.user.password ,
-    })
+  if (verify.otp !== otp)
+    return res.status(400).json({
+      message: "Wrong Otp",
+    });
 
-    res.json({
-        message: "User Has Been Registered" ,
-    })
-})
+  await User.create({
+    name: verify.user.name,
+    email: verify.user.email,
+    password: verify.user.password,
+  });
 
-export const loginUser = TryCatch(async(req, res) => {
-    console.log('Login request received:', req.body);
-    const {email,password} = req.body
+  res.json({
+    message: "User Registered",
+  });
+});
 
-    const user = await User.findOne({email})
+export const loginUser = TryCatch(async (req, res) => {
+  const { email, password } = req.body;
 
-    if(!user)
-        return res.status(400).json({
-            message: "No user in this email",
-        })
-    
-    const matchPassword = await bcrypt.compare(password, user.password)
+  const user = await User.findOne({ email });
 
-    if(!matchPassword) 
-        return res.status(400).json({
-            message: "wrong password"
-        })
+  if (!user)
+    return res.status(400).json({
+      message: "No User with this email",
+    });
 
-    const token = jwt.sign({_id: user._id}, process.env.Jwt_Sec,{
-        expiresIn: "15d",
-    })
+  const mathPassword = await bcrypt.compare(password, user.password);
 
-    res.json({
-        message: `Welcome back ${user.name}`,
-        token,
-        user,
-    })
-})
+  if (!mathPassword)
+    return res.status(400).json({
+      message: "wrong Password",
+    });
 
-export const myProfile = TryCatch(async(req, res)=>{
-    const user = await User.findById(req.user._id)
+  const token = jwt.sign({ _id: user._id }, process.env.Jwt_Sec, {
+    expiresIn: "15d",
+  });
 
-    res.json({user});
-})
+  res.json({
+    message: `Welcome back ${user.name}`,
+    token,
+    user,
+  });
+});
+
+export const requestCourse = TryCatch(async (req, res) => {
+  const { title, description } = req.body;
+
+  console.log(req.body) ;
+
+  if (!title || !description) {
+    return res.status(400).json({
+      message: "Please provide both title and description",
+    });
+  }
+
+  const courseRequest = new CourseRequest({
+    title,
+    description,
+    requestedBy: req.user._id, 
+  });
+
+  await courseRequest.save();
+
+  res.status(201).json({
+    message: "Course request submitted successfully",
+    courseRequest,
+  });
+});
+
+export const getMyRequests = TryCatch(async (req, res) => {
+  const { _id } = req.user;
+
+  const requests = await CourseRequest.find({ requestedBy: _id });
+
+  res.json({
+    message: "Course requests retrieved successfully",
+    requests,
+  });
+});
+
+export const updateCourseRequest = TryCatch(async (req, res) => {
+  const { id } = req.params;
+  const { title, description } = req.body;
+
+  const request = await CourseRequest.findById(id);
+
+  if (!request) {
+    return res.status(404).json({
+      message: "Course request not found",
+    });
+  }
+
+  if (request.status !== "pending") {
+    return res.status(400).json({
+      message: "You can only update requests with pending status",
+    });
+}
+
+  request.title = title || request.title;
+  request.description = description || request.description;
+
+  await request.save();
+
+  res.status(200).json({
+    message: "Course request updated successfully",
+    request,
+  });
+});
+
+export const deleteCourseRequest = TryCatch(async (req, res) => {
+  const { id } = req.params;
+
+  const courseRequest = await CourseRequest.findById(id);
+
+  if (!courseRequest) {
+    return res.status(404).json({
+      message: "Course request not found",
+    });
+  }
+
+  if (
+    courseRequest.requestedBy.toString() !== req.user._id.toString() &&
+    req.user.role !== "admin"
+  ) {
+    return res.status(403).json({
+      message: "You are not authorized to delete this request",
+    });
+  }
+
+  await courseRequest.deleteOne();
+
+  res.status(200).json({
+    message: "Course request deleted successfully",
+  });
+});
+
+export const myProfile = TryCatch(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  res.json({ user });
+});
+
+export const forgotPassword = TryCatch(async (req, res) => {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user)
+    return res.status(404).json({
+      message: "No User with this email",
+    });
+
+  const token = jwt.sign({ email }, process.env.Forgot_Secret);
+
+  const data = { email, token };
+
+  await sendForgotMail("E learning", data);
+
+  user.resetPasswordExpire = Date.now() + 5 * 60 * 1000;
+
+  await user.save();
+
+  res.json({
+    message: "Reset Password Link is send to you mail",
+  });
+});
+
+export const resetPassword = TryCatch(async (req, res) => {
+  const decodedData = jwt.verify(req.query.token, process.env.Forgot_Secret);
+
+  const user = await User.findOne({ email: decodedData.email });
+
+  if (!user)
+    return res.status(404).json({
+      message: "No user with this email",
+    });
+
+  if (user.resetPasswordExpire === null)
+    return res.status(400).json({
+      message: "Token Expired",
+    });
+
+  if (user.resetPasswordExpire < Date.now()) {
+    return res.status(400).json({
+      message: "Token Expired",
+    });
+  }
+
+  const password = await bcrypt.hash(req.body.password, 10);
+
+  user.password = password;
+
+  user.resetPasswordExpire = null;
+
+  await user.save();
+
+  res.json({ message: "Password Reset" });
+});

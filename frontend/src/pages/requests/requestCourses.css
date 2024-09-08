@@ -1,0 +1,94 @@
+.request-course {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+
+  .request-course h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #8a4baf;
+    text-align: center;
+  }
+  
+
+  .request-course-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  .form-group label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+  }
+  
+
+  .form-group input,
+  .form-group textarea {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #f9f9f9;
+    resize: vertical;
+  }
+  
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #6c3b88;
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.2);
+  }
+  
+
+  .submit-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: #8a4baf;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+  }
+  
+
+  .submit-btn:hover {
+    background-color: #6c3b88;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+ 
+  @media (max-width: 768px) {
+    .request-course {
+      padding: 1.5rem;
+    }
+  
+    .request-course h2 {
+      font-size: 1.5rem;
+    }
+  
+    .submit-btn {
+      font-size: 1rem;
+    }
+  }
+  
