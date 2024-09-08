@@ -1,0 +1,84 @@
+/* Container for the entire payment form */
+.payment-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Title for the payment page */
+.payment-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+}
+
+/* Style each input field */
+.payment-container input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+/* Input fields on focus */
+.payment-container input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Style for the form labels */
+.payment-container label {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Payment button */
+.payment-container button {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+/* Button hover effect */
+.payment-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Status message after payment */
+.payment-container p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+    color: #28a745; /* For success */
+}
+
+/* Style for error message */
+.payment-container .error {
+    color: #dc3545;
+}
+
+/* Go to Course button */
+.payment-container .go-to-course-button {
+    margin-top: 20px;
+    background-color: #28a745;
+}
+
+.payment-container .go-to-course-button:hover {
+    background-color: #218838;
+}

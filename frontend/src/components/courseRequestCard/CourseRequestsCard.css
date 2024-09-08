@@ -1,0 +1,37 @@
+.course-request-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.course-request-card h3 {
+  margin-top: 0;
+  font-size: 1.5em;
+}
+
+.course-request-card p {
+  margin: 5px 0;
+}
+
+.common-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  color: #fff;
+}
+
+.common-btn:hover {
+  opacity: 0.9;
+}
+
+.common-btn[style*="green"] {
+  background-color: #4CAF50;
+}
+
+.common-btn[style*="red"] {
+  background-color: #f44336;
+}
