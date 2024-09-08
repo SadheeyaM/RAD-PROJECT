@@ -1,31 +1,39 @@
 import mongoose from "mongoose";
 
-const schema = new mongoose.Schema({
+const schema = new mongoose.Schema(
+  {
     name: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     email: {
-        type: String,
-        required: true,
-        unique: true,
+      type: String,
+      required: true,
+      unique: true,
     },
     password: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
-    role:{
-        type: String,
-        default: "user"
+    role: {
+      type: String,
+      default: "user",
     },
-    subscription: [{
+    mainrole: {
+      type: String,
+      default: "user",
+    },
+    subscription: [
+      {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Courses" ,
-    },
+        ref: "Courses",
+      },
     ],
-},
-{
-    timestamps: true ,
-}) ;
+    resetPasswordExpire: Date,
+  },
+  {
+    timestamps: true,
+  }
+);
 
-export const User = mongoose.model("User" , schema) ;
+export const User = mongoose.model("User", schema);
