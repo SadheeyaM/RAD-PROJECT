@@ -29,14 +29,16 @@ const Account = ({ user }) => {
               <p><strong>Name: {user.name}</strong></p>
               <p><strong>Email: {user.email}</strong></p>
             </div>
+
             <div className="dashboard-buttons">
+            {user.role === "user" && (
               <button
                 onClick={() => navigate(`/${user._id}/dashboard`)}
                 className="account-btn"
               >
                 <MdDashboard /> Dashboard
               </button>
-
+            )}
               {user.role === "admin" && (
                 <button
                   onClick={() => navigate(`/admin/dashboard`)}
