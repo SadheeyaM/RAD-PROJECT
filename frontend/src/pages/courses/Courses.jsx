@@ -22,7 +22,7 @@ const Courses = () => {
         {courses && courses.length > 0 ? (
           courses.map((e) => <CourseCard key={e._id} course={e} />)
         ) : (
-          <p>No Courses Yet!</p>
+          <p>No Courses Yet</p>
         )}
       </div>
       <div className="request-course-section">
