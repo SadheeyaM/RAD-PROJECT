@@ -32,7 +32,7 @@ const Verify = () => {
             required
           />
           <ReCAPTCHA
-            sitekey=" 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
             onChange={onChange}
           />
           ,

@@ -27,8 +27,7 @@
   overflow: hidden;
   pointer-events: auto;
   margin-right: 20px;
-
-  max-height: 500px; 
+  height: 700px; 
   display: block; 
   
 }
