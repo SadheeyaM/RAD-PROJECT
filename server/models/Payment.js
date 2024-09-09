@@ -6,12 +6,10 @@ const paymentSchema = new mongoose.Schema({
         required: true, 
         minlength: 13,    
         maxlength: 19,   
-        match: /^\d+$/, 
     },
     expiryDate: { 
         type: String, 
         required: true, 
-        match: /^(0[1-9]|1[0-2])\/?([0-9]{2})$/,
         validate: {
             validator: function(value) {
                 const [month, year] = value.split("/");
@@ -27,7 +25,6 @@ const paymentSchema = new mongoose.Schema({
         required: true, 
         minlength: 3,  
         maxlength: 4, 
-        match: /^[0-9]{3,4}$/, 
     },
     currency: { 
         type: String, 
