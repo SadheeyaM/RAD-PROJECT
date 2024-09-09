@@ -150,11 +150,11 @@
   background-color: #5a6268;
 }
 
-/* Responsive styles for smaller screens */
+
 @media screen and (max-width: 768px) {
   .course-request-card {
-    max-width: 100%; /* Make full-width on smaller screens */
-    min-height: 280px; /* Adjust height for smaller screens */
+    max-width: 100%; 
+    min-height: 280px;
     margin: 10px auto;
   }
 }

@@ -1,4 +1,3 @@
-/* Container for the entire review form */
 .feedback-container {
     max-width: 500px;
     margin: 50px auto;
@@ -9,7 +8,6 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* Title for the review page */
 .feedback-container h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -17,7 +15,6 @@
     font-size: 24px;
 }
 
-/* Style each input field */
 .feedback-container input[type="text"] {
     width: 100%;
     padding: 12px 15px;
@@ -29,19 +26,16 @@
     transition: border-color 0.3s ease;
 }
 
-/* Input fields on focus */
 .feedback-container input[type="text"]:focus {
     border-color: #8a4baf;
     outline: none;
 }
 
-/* Style for the form labels */
 .feedback-container label {
     font-size: 14px;
     color: #555;
 }
 
-/* Buttons for the review form */
 .feedback-container button {
     width: 100%;
     padding: 12px 15px;
@@ -55,13 +49,12 @@
     margin-top: 15px;
 }
 
-/* Button hover effect */
+
 .feedback-container button:hover {
     background-color: white;
     color: #000000;
 }
 
-/* Style for delete button */
 .feedback-container .delete-button {
     background-color: #dc3545;
     color: white;
@@ -72,20 +65,17 @@
     color: white;
 }
 
-/* Status message after submitting feedback */
 .feedback-container p {
     text-align: center;
     margin-top: 15px;
     font-size: 16px;
-    color: #8a4baf; /* For success */
+    color: #8a4baf; 
 }
 
-/* Style for error message */
 .feedback-container .error {
     color: #dc3545;
 }
 
-/* Go to Course button */
 .feedback-container .go-to-course-button {
     margin-top: 20px;
     background-color: #8a4baf;
@@ -95,7 +85,6 @@
     background-color: white;
 }
 
-/* Style for existing review section */
 .existing-review {
     padding: 15px;
     margin-bottom: 20px;

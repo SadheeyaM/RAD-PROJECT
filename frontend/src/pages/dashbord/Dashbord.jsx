@@ -11,7 +11,7 @@ import CourseRequestCard from "../../components/courseRequestCard/courseRequests
 const Dashboard = () => {
   const { mycourse } = CourseData();
   const { fetchMyRequests, requests } = UserData();
-  const [activeSection, setActiveSection] = useState("courses"); // State to track the active section
+  const [activeSection, setActiveSection] = useState("courses");
 
   useEffect(() => {
     fetchMyRequests();
