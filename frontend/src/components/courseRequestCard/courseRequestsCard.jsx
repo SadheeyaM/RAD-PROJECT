@@ -16,24 +16,7 @@ const CourseRequestCard = ({ request }) => {
   const [updatedTitle, setUpdatedTitle] = useState(request.title);
   const [updatedDescription, setUpdatedDescription] = useState(request.description);
 
-  const approveHandler = async (id) => {
-    console.log("hihi")
-    try {
-      const { data } = await axios.post(
-       `${server}/api/approveRequest/${id}`,
-        {},
-        {
-          headers: {
-            token: localStorage.getItem("token"),
-          },
-        }
-      );
-      toast.success(data.message);
-      fetchCourses();
-    } catch (error) {
-      toast.error(error.response?.data?.message || "An error occurred");
-    }
-  };
+  
 
   const deleteHandler = async (id) => {
     if (confirm("Are you sure you want to delete this course request?")) {
@@ -101,17 +84,6 @@ const CourseRequestCard = ({ request }) => {
         <p className="card-description">{request.description}</p>
       )}
 
-      {user && user.role === "admin" && (
-        
-        <div className="card-actions">
-          <button
-            onClick={() => approveHandler(request._id)}
-            className="common-btn approve-btn"
-          >
-            Approve
-          </button>
-        </div>
-      )}
 
       {user && user.role === "user" && user._id === request.requestedBy && request.status === "pending" && (
         <div className="card-actions">
